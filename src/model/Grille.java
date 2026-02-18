@@ -2,8 +2,8 @@ package model;
 
 public class Grille {
 
-    public static final int HAUTEUR = 0;
-    public static final int LARGEUR = 0;
+    public static final int HAUTEUR = 20;
+    public static final int LARGEUR = 15;
 
     public void ajouterLigne(Ligne ligne) {
         // TODO Auto-generated method stub

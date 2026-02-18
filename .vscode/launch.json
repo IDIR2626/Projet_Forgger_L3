@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Lancer Frogger",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "main.FrogerApp",
+            "projectName": "projet_frogger_l3",
+            "vmArgs": "--module-path C:\\openjfx-25.0.2_windows-x64_bin-sdk\\javafx-sdk-25.0.2\\lib --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}

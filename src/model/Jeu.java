@@ -4,5 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jeu {
-    // Ici, on ajoutera les attributs plus tard
+    private boolean enCours = false;
+    private Joueur joueur;
+    private Score score;
+    private Grille grille;
 }

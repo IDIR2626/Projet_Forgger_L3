@@ -2,11 +2,28 @@ package model;
 
 public class Joueur {
 
-    int x;
-    int y;
+    private int x;
+    private int y;
 
-    public Joueur(int i, int j) {
-        // TODO Auto-generated constructor stub
+    public Joueur(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void reinitialiser(int xDepart, int yDepart) {
+        setPosition(xDepart, yDepart);
+    }
 }

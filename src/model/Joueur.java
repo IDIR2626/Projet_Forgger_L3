@@ -26,4 +26,20 @@ public class Joueur {
     public void reinitialiser(int xDepart, int yDepart) {
         setPosition(xDepart, yDepart);
     }
+
+    public boolean deplacer(int deltaX, int deltaY, int largeurGrille, int hauteurGrille) {
+        int nouvelleX = x + deltaX;
+        int nouvelleY = y + deltaY;
+
+        if (nouvelleX < 0 || nouvelleX >= largeurGrille) {
+            return false;
+        }
+        if (nouvelleY < 0 || nouvelleY >= hauteurGrille) {
+            return false;
+        }
+
+        x = nouvelleX;
+        y = nouvelleY;
+        return true;
+    }
 }

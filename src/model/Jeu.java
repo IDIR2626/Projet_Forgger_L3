@@ -61,6 +61,22 @@ public class Jeu {
         notifierObservers();
     }
 
+    public boolean deplacerJoueurHaut() {
+        return deplacerJoueur(0, -1);
+    }
+
+    public boolean deplacerJoueurBas() {
+        return deplacerJoueur(0, 1);
+    }
+
+    public boolean deplacerJoueurGauche() {
+        return deplacerJoueur(-1, 0);
+    }
+
+    public boolean deplacerJoueurDroite() {
+        return deplacerJoueur(1, 0);
+    }
+
     public void ajouterObserver(GameObserver observer) {
         if (observer != null && !observers.contains(observer)) {
             observers.add(observer);
@@ -69,6 +85,18 @@ public class Jeu {
 
     public void retirerObserver(GameObserver observer) {
         observers.remove(observer);
+    }
+
+    private boolean deplacerJoueur(int deltaX, int deltaY) {
+        if (!enCours) {
+            return false;
+        }
+
+        boolean deplacementEffectue = joueur.deplacer(deltaX, deltaY, Grille.LARGEUR, Grille.HAUTEUR);
+        if (deplacementEffectue) {
+            notifierObservers();
+        }
+        return deplacementEffectue;
     }
 
     private void notifierObservers() {

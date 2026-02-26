@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Diagram de gantt" company="" webLink="http://" view-date="2026-02-02" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
+    <description/>
+    <view zooming-state="default:1" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="200" order="0"/>
+        <field id="tpd4" name="Date de début" width="75" order="1"/>
+        <field id="tpd5" name="Date de fin" width="75" order="2"/>
+        <field id="tpd15" name="Notes" width="20" order="3"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+        <option id="color.recent"><![CDATA[#990099 #3333ff #ccccff #99ffff]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" uid="ddc87e044f654623b6c47e9dc1c25dcc" name="Choix de thème" color="#3333ff" meeting="false" start="2026-02-04" duration="1" complete="0" expand="true"/>
+        <task id="1" uid="9d0b05f27a9340db92a534a2ba21dcaa" name="mis en place Github + vs code" color="#990099" meeting="false" start="2026-02-04" duration="1" complete="0" expand="true"/>
+        <task id="2" uid="91ec50356861452c8e1a4fe76fd10f7d" name="Diagramme de classe" color="#99ffff" meeting="false" start="2026-02-04" duration="2" complete="0" expand="true"/>
+        <task id="3" uid="50157dcb63574407b295bda880a6a1bf" name="Diagramme de gantt initial" color="#ccccff" meeting="false" start="2026-02-04" duration="1" complete="0" expand="true"/>
+        <task id="4" uid="dfae9411f8bf41de8751bfa16685cbda" name="modele" meeting="false" start="2026-02-05" duration="12" complete="100" expand="true">
+            <task id="5" uid="6927b32b6829465a93c32c018422d679" name="Classe Joueur" meeting="false" start="2026-02-05" duration="5" complete="100" expand="true"/>
+            <task id="14" uid="6e8c692bb358452d864ca7336db7c533" name="Classe element" meeting="false" start="2026-02-10" duration="9" complete="100" expand="true"/>
+            <task id="11" uid="f4810a33d20f4cc19c21640d39c381cb" name="calsse typeElement" meeting="false" start="2026-02-16" duration="4" complete="100" expand="true"/>
+            <task id="9" uid="084b08be67fa443b83719d20b0bc5860" name="Classe Ligne" meeting="false" start="2026-02-10" duration="9" complete="100" expand="true"/>
+            <task id="8" uid="24cd18057d004a1894ac735caa58fb99" name="Classe Grill" meeting="false" start="2026-02-06" duration="5" complete="100" expand="true"/>
+            <task id="7" uid="6186d6c31f6f4db2bffada0da5010552" name="Classe Score" meeting="false" start="2026-02-06" duration="5" complete="100" expand="true"/>
+            <task id="6" uid="060caac7cd9a4e358be218473ad906e2" name="Classe Jeu" meeting="false" start="2026-02-06" duration="5" complete="100" expand="true"/>
+        </task>
+        <task id="19" uid="0409308e2a664a22b96fbb6576de2577" name="ressouces" meeting="false" start="2026-02-26" duration="1" complete="0" expand="true">
+            <task id="20" uid="4f3b181830774751a7a5a499d9638067" name="images" meeting="false" start="2026-02-26" duration="1" complete="0" expand="true"/>
+            <task id="21" uid="d17bc3c03a6d42af8d50e03c2a9a6d61" name="audios" meeting="false" start="2026-02-26" duration="1" complete="0" expand="true"/>
+            <task id="22" uid="c7062373dcb5413e927a356111708790" name="style" meeting="false" start="2026-02-26" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="23" uid="ac79d2cfb5a844d2b4211a61104ec713" name="vue" meeting="false" start="2026-02-26" duration="1" complete="0" expand="true">
+            <task id="24" uid="080724e305e9455aa2abee73b290b7a1" name="menuView" meeting="false" start="2026-02-26" duration="1" complete="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>

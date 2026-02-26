@@ -1,7 +1,14 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Score {
 
+    private static final String FICHIER_SCORE = null;
     private int scoreActuel;
     private int meilleurScore;
 

@@ -1,0 +1,64 @@
+package vue;
+
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Mainview {
+
+    private final Stage stage;
+    private final BorderPane root;
+    private final Scene scene;
+
+    public Mainview(Stage stage) {
+        this.stage = stage;
+        this.root = new BorderPane();
+        this.scene = new Scene(root, 900, 600);
+
+        setupContent();
+        applyStyle();
+        AudioManager.playAccueilMusic(); // 🎵 Musique d’accueil
+    }
+
+    private void setupContent() {
+
+        // --- Logo ---
+        Image logoImage = new Image(
+                getClass().getResource("/ressources/Images/1.webp").toExternalForm()
+        );
+
+        ImageView logo = new ImageView(logoImage);
+        logo.setFitWidth(300);
+        logo.setPreserveRatio(true);
+
+        // --- Bouton Start ---
+        Button startButton = new Button("Start");
+        startButton.getStyleClass().add("menu-button");
+
+        startButton.setOnAction(e -> {
+            AudioManager.stop(); // Stop musique d’accueil
+            ViewManager.showMenu(stage); // Ouvre le menu principal
+        });
+
+        // --- Conteneur vertical ---
+        VBox box = new VBox(30, logo, startButton);
+        box.setAlignment(Pos.CENTER);
+
+        root.setCenter(box);
+    }
+
+    private void applyStyle() {
+        scene.getStylesheets().add(
+                getClass().getResource("/ressources/style.css").toExternalForm()
+        );
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
+}

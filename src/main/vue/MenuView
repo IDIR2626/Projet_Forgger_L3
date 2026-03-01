@@ -1,0 +1,80 @@
+package vue;
+
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class MenuView {
+
+    private final Stage stage;
+    private final BorderPane root;
+    private final Scene scene;
+
+    public MenuView(Stage stage) {
+        this.stage = stage;
+        this.root = new BorderPane();
+        this.scene = new Scene(root, 900, 600);
+
+        setupContent();
+        applyStyle();
+        AudioManager.playAccueilMusic(); // 🎵 Musique du menu
+    }
+
+    private void setupContent() {
+
+        // --- Logo ---
+        Image logoImage = new Image(
+                getClass().getResource("/ressources/Images/1.webp").toExternalForm()
+        );
+
+        ImageView logo = new ImageView(logoImage);
+        logo.setFitWidth(250);
+        logo.setPreserveRatio(true);
+
+        // --- Boutons ---
+        Button startBtn = new Button("Start Game");
+        Button rulesBtn = new Button("Rules");
+        Button quitBtn = new Button("Quit");
+
+        startBtn.getStyleClass().add("menu-button");
+        rulesBtn.getStyleClass().add("menu-button");
+        quitBtn.getStyleClass().add("menu-button");
+
+        // Actions
+        startBtn.setOnAction(e -> {
+            AudioManager.stop();
+            ViewManager.showGameView(stage);
+        });
+
+        rulesBtn.setOnAction(e -> {
+            AudioManager.stop();
+            ViewManager.showRulesView(stage);
+        });
+
+        quitBtn.setOnAction(e -> {
+            AudioManager.stop();
+            stage.close();
+        });
+
+        // --- Layout ---
+        VBox box = new VBox(20, logo, startBtn, rulesBtn, quitBtn);
+        box.setAlignment(Pos.CENTER);
+
+        root.setCenter(box);
+    }
+
+    private void applyStyle() {
+        scene.getStylesheets().add(
+                getClass().getResource("/ressources/style.css").toExternalForm()
+        );
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
+}

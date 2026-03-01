@@ -7,7 +7,9 @@
             "request": "launch",
             "mainClass": "main.FrogerApp",
             "projectName": "projet_frogger_l3",
-            "vmArgs": "--module-path C:\\openjfx-25.0.2_windows-x64_bin-sdk\\javafx-sdk-25.0.2\\lib --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"C:/Users/ACER/OneDrive/Bureau/javafx-21/javafx-sdk-21.0.10/lib\" --add-modules javafx.controls,javafx.fxml"
+           
+
         }
     ]
 }

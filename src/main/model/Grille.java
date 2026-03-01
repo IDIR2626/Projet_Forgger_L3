@@ -23,9 +23,20 @@ public class Grille {
         return Collections.unmodifiableList(lignes);
     }
 
+    public boolean estCollision(int x, int y) {
+        if (y < 0 || y >= lignes.size()) return false;
+        Ligne ligne = lignes.get(y);
+        if (ligne == null) return false;
+        return ligne.estCollision(x);
+    }
+
     public void mettreAJour() {
         for (Ligne ligne : lignes) {
             ligne.mettreAJour();
         }
     }
+
+
 }
+
+

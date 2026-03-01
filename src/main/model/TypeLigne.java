@@ -3,7 +3,7 @@ package model;
 
 public enum TypeLigne {
     ROUTE,
-    RIVIERE,
-    FERROVIAIRE,
-    TOXIQUE
+    HERBE,
+    ARRIVEE,
+    DEPART
 }

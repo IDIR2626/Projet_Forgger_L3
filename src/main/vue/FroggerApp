@@ -2,16 +2,26 @@ package vue;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.Jeu;
 
 public class FroggerApp extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Frogger - L3 MIAGE");
-        ViewManager.showMenu(stage);   // Lance le menu principal
+
+        stage.setTitle("Frogger - L3");
+
+        // Le jeu (modèle)
+        Jeu jeu = new Jeu();
+
+        // Affiche le menu au lancement
+        ViewManager.showMenu(stage);
+
+        stage.show();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 }
+

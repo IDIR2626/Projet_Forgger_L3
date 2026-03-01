@@ -44,6 +44,10 @@ public class MenuView {
         startBtn.getStyleClass().add("menu-button");
         rulesBtn.getStyleClass().add("menu-button");
         quitBtn.getStyleClass().add("menu-button");
+        public Button getStartButton() { return startBtn; }
+        public Button getRulesButton() { return rulesBtn; }
+        public Button getQuitButton() { return quitBtn; }
+
 
         // Actions
         startBtn.setOnAction(e -> {

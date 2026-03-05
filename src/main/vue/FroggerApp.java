@@ -11,11 +11,14 @@ public class FroggerApp extends Application {
 
         stage.setTitle("Frogger - L3");
 
+        // Activer le mode plein écran
+        stage.setFullScreen(true);
+
         // Le jeu (modèle)
         Jeu jeu = new Jeu();
 
-        // Affiche le menu au lancement
-        ViewManager.showMenu(stage);
+        // Affiche la splash screen au lancement (MainView)
+        ViewManager.showMainView(stage);
 
         stage.show();
     }

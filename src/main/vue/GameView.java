@@ -64,7 +64,7 @@ public class GameView {
     // ---------------------------------------------------------
     //                🎨 DESSIN COMPLET DU JEU
     // ---------------------------------------------------------
-    private void draw() {
+    public void draw() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         int taille = 30;
 

@@ -1,11 +1,14 @@
 package vue;
 
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class AudioManager {
 
     private static MediaPlayer mediaPlayer;
+    private static double brightness = 0.0; // -1.0 à 1.0
+    private static ColorAdjust globalColorAdjust = new ColorAdjust();
 
     // Méthode interne pour charger un fichier audio
     private static MediaPlayer load(String path) {
@@ -32,7 +35,7 @@ public class AudioManager {
     // 🎮 Musique pendant le jeu
     public static void playGameMusic() {
         stop();
-        mediaPlayer = load("/ressources/Audio/musique jeu 1.mp3");
+        mediaPlayer = load("/ressources/Audio/musique jeu 3.mp3");
         if (mediaPlayer != null) {
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
             mediaPlayer.setVolume(0.5);
@@ -65,5 +68,35 @@ public class AudioManager {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
+    }
+
+    // 🔊 Ajuster le volume
+    public static void setVolume(double volume) {
+        if (mediaPlayer != null) {
+            mediaPlayer.setVolume(Math.max(0, Math.min(1, volume)));
+        }
+    }
+
+    // ☀️ Ajuster la luminosité globale
+    public static void setBrightness(double value) {
+        brightness = Math.max(-1.0, Math.min(1.0, value));
+        globalColorAdjust.setBrightness(brightness);
+    }
+
+    // Récupérer la luminosité globale
+    public static double getBrightness() {
+        return brightness;
+    }
+
+    // Récupérer l'effet ColorAdjust global
+    public static ColorAdjust getGlobalColorAdjust() {
+        return globalColorAdjust;
+    }
+
+    // Petit clic audio (boutons, retours)
+    public static void playClick() {
+        // Optionnel : charger un fichier "click.mp3" si vous en avez un dans ressources
+        // pour l'instant on se contente d'arrêter toute lecture existante
+        stop();
     }
 }

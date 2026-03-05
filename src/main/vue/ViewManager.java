@@ -12,6 +12,11 @@ public class ViewManager {
         stage.setScene(main.getScene());
     }
 
+    // convenience alias for old call sites
+    public static void showMenu(Stage stage) {
+        showMenuView(stage);
+    }
+
     public static void showMenuView(Stage stage) {
         MenuController controller = new MenuController(stage);
         stage.setScene(controller.getView().getScene());
@@ -30,6 +35,11 @@ public class ViewManager {
     public static void showGameOverView(Stage stage, boolean win, int score) {
         GameOverView gov = new GameOverView(stage, win, score);
         stage.setScene(gov.getScene());
+    }
+
+    public static void showSettingsView(Stage stage) {
+        SettingsView settings = new SettingsView(stage);
+        stage.setScene(settings.getScene());
     }
 }
 

@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 public class RulesView {
 
     private final Scene scene;
+    private Button retour;
+
     public Button getRetourButton() { return retour; }
 
 
@@ -27,7 +29,7 @@ public class RulesView {
                 """);
         texte.getStyleClass().add("texte");
 
-        Button retour = new Button("Retour");
+        retour = new Button("Retour");
         retour.setOnAction(e -> {
             AudioManager.playClick();
             ViewManager.showMenu(stage);

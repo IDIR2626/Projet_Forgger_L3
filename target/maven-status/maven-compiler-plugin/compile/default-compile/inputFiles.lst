@@ -1,20 +1,20 @@
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/vue/SettingsView.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/vue/GameView.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/vue/MenuView.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/controller/RulesController.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/model/Ligne.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/controller/GameController.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/controller/MenuController.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/model/Score.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/vue/Mainview.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/model/Joueur.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/model/GameObserver.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/vue/AudioManager.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/vue/FroggerApp.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/model/Element.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/vue/GameOverView.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/vue/ViewManager.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/model/Grille.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/vue/RulesView.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/model/Jeu.java
-/Users/akhemoumsidali/Documents/Etudes/Licence 3/S6/Projet/Code projet/Projet_Forgger_L3/src/main/model/TypeLigne.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/controller/GameController.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/vue/RulesView.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/model/Ligne.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/vue/AudioManager.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/model/TypeLigne.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/controller/MenuController.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/model/Jeu.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/model/Joueur.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/model/Score.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/model/Grille.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/model/GameObserver.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/vue/SettingsView.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/vue/ViewManager.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/vue/FroggerApp.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/vue/GameOverView.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/vue/GameView.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/controller/RulesController.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/vue/MenuView.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/model/Element.java
+/home/runner/work/Projet_Forgger_L3/Projet_Forgger_L3/src/main/java/com/frogger/vue/Mainview.java

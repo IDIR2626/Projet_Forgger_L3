@@ -4,18 +4,22 @@ public class Element {
 
     private int x;
     private int y;
-    private int taille; // or whatever the 3rd param represents
+    private int taille;
     private int vitesse;
 
     public Element(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this(x, y, 1, 0);
     }
 
-    // added overload to accept three ints
     public Element(int x, int y, int taille) {
-        this(x, y);
+        this(x, y, taille, 0);
+    }
+
+    public Element(int x, int y, int taille, int vitesse) {
+        this.x = x;
+        this.y = y;
         this.taille = taille;
+        this.vitesse = vitesse;
     }
 
     public int getX() {
@@ -26,11 +30,6 @@ public class Element {
         return y;
     }
 
-    public void deplacer(int largeurGrille) {
-        x += vitesse;
-        x = ((x % largeurGrille) + largeurGrille) % largeurGrille;
-    }
-
     public int getTaille() {
         return taille;
     }
@@ -38,9 +37,18 @@ public class Element {
     public int getVitesse() {
         return vitesse;
     }
+
+    public void deplacer(int largeurGrille) {
+        x += vitesse;
+
+        if (x >= largeurGrille) {
+            x = -taille + 1;
+        } else if (x + taille - 1 < 0) {
+            x = largeurGrille - 1;
+        }
+    }
+
+    public boolean occupeCase(int caseX) {
+        return caseX >= x && caseX < x + taille;
+    }
 }
-
-
-
-
-

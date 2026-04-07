@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Jeu {
 
-    private static final int POINTS_PAR_TICK = 1;
+    private static final int POINTS_PAR_MONTEE = 10;
 
     private boolean enCours = false;
     private boolean win = false;
@@ -20,6 +20,21 @@ public class Jeu {
         joueur = new Joueur(Grille.LARGEUR / 2, Grille.HAUTEUR - 1);
         score = new Score();
         grille = new Grille();
+        initialiserGrille();
+    }
+
+    private void initialiserGrille() {
+        for (int y = 0; y < Grille.HAUTEUR; y++) {
+            if (y == 0) {
+                grille.ajouterLigne(new Ligne(TypeLigne.ARRIVEE, y));
+            } else if (y == Grille.HAUTEUR - 1) {
+                grille.ajouterLigne(new Ligne(TypeLigne.DEPART, y));
+            } else if (y >= 5 && y <= 14) {
+                grille.ajouterLigne(new Ligne(TypeLigne.ROUTE, y));
+            } else {
+                grille.ajouterLigne(new Ligne(TypeLigne.HERBE, y));
+            }
+        }
     }
 
     public boolean estEnCours() {
@@ -68,10 +83,10 @@ public class Jeu {
     }
 
     public void miseAJour() {
-        if (!enCours) return;
+        if (!enCours)
+            return;
 
         grille.mettreAJour();
-        score.ajouterPoints(POINTS_PAR_TICK);
 
         if (joueur.getY() == 0) {
             win = true;
@@ -91,7 +106,11 @@ public class Jeu {
     }
 
     public boolean deplacerJoueurHaut() {
-        return deplacerJoueur(0, -1);
+        boolean ok = deplacerJoueur(0, -1);
+        if (ok) {
+            score.ajouterPoints(POINTS_PAR_MONTEE);
+        }
+        return ok;
     }
 
     public boolean deplacerJoueurBas() {
@@ -107,7 +126,8 @@ public class Jeu {
     }
 
     private boolean deplacerJoueur(int deltaX, int deltaY) {
-        if (!enCours) return false;
+        if (!enCours)
+            return false;
 
         boolean deplacementEffectue = joueur.deplacer(deltaX, deltaY, Grille.LARGEUR, Grille.HAUTEUR);
 
@@ -134,4 +154,3 @@ public class Jeu {
         }
     }
 }
-

@@ -42,7 +42,7 @@ public class MenuView {
 
         // Arrière-plan vert avec dégradé incluant du jaune
         root.setStyle("-fx-background-color: linear-gradient(to bottom, #90EE90, yellow, #006400);");
-        
+
         // Appliquer l'effet de luminosité global
         root.setEffect(AudioManager.getGlobalColorAdjust());
 
@@ -59,8 +59,7 @@ public class MenuView {
 
         // --- Image de fond ---
         Image backgroundImage = new Image(
-                getClass().getResource("/ressources/Images/2.png").toExternalForm()
-        );
+                getClass().getResource("/Images/2.png").toExternalForm());
 
         ImageView backgroundView = new ImageView(backgroundImage);
         backgroundView.setFitWidth(800);
@@ -68,8 +67,7 @@ public class MenuView {
 
         // --- Logo ---
         Image logoImage = new Image(
-                getClass().getResource("/ressources/Images/1.png").toExternalForm()
-        );
+                getClass().getResource("/Images/1.png").toExternalForm());
 
         ImageView logo = new ImageView(logoImage);
         logo.setFitWidth(250);
@@ -122,14 +120,24 @@ public class MenuView {
 
     private void applyStyle() {
         scene.getStylesheets().add(
-                getClass().getResource("/ressources/style.css").toExternalForm()
-        );
+                getClass().getResource("/style.css").toExternalForm());
     }
 
-    public Button getStartButton() { return startBtn; }
-    public Button getRulesButton() { return rulesBtn; }
-    public Button getSettingsButton() { return settingsBtn; }
-    public Button getQuitButton() { return quitBtn; }
+    public Button getStartButton() {
+        return startBtn;
+    }
+
+    public Button getRulesButton() {
+        return rulesBtn;
+    }
+
+    public Button getSettingsButton() {
+        return settingsBtn;
+    }
+
+    public Button getQuitButton() {
+        return quitBtn;
+    }
 
     public Scene getScene() {
         return scene;

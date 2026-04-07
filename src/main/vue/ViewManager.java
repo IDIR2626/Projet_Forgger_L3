@@ -33,7 +33,7 @@ public class ViewManager {
     }
 
     public static void showGameOverView(Stage stage, boolean win, int score) {
-        GameOverView gov = new GameOverView(stage, win, score);
+        GameOverView gov = new GameOverView(stage, score, win);
         stage.setScene(gov.getScene());
     }
 
@@ -42,5 +42,3 @@ public class ViewManager {
         stage.setScene(settings.getScene());
     }
 }
-
-

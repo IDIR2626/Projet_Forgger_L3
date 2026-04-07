@@ -31,7 +31,7 @@ public class Mainview {
 
         // Arrière-plan vert avec dégradé incluant du jaune
         root.setStyle("-fx-background-color: linear-gradient(to bottom, #90EE90, yellow, #006400);");
-        
+
         // Appliquer l'effet de luminosité global
         root.setEffect(AudioManager.getGlobalColorAdjust());
 
@@ -50,8 +50,7 @@ public class Mainview {
         Image splashImage = null;
         try {
             splashImage = new Image(
-                    getClass().getResource("/ressources/Images/1.png").toExternalForm()
-            );
+                    getClass().getResource("/Images/1.png").toExternalForm());
         } catch (Exception e) {
             System.out.println("Erreur chargement image : " + e.getMessage());
             // Fallback : créer une image vide ou utiliser une couleur
@@ -61,7 +60,10 @@ public class Mainview {
             // Si l'image ne charge pas, afficher un fond noir avec du texte
             System.out.println("Image non trouvée, affichage alternatif");
             // Pour l'instant, on continue avec une image vide
-            splashImage = new Image("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="); // Image transparente 1x1
+            splashImage = new Image(
+                    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="); // Image
+                                                                                                                                               // transparente
+                                                                                                                                               // 1x1
         }
 
         ImageView splashView = new ImageView(splashImage);
@@ -102,9 +104,19 @@ public class Mainview {
     }
 
     private void applyStyle() {
-        scene.getStylesheets().add(
-                getClass().getResource("/ressources/style.css").toExternalForm()
-        );
+        try {
+            java.net.URL cssUrl = getClass().getResource("/style.css");
+            System.out.println("CSS URL = " + cssUrl);
+
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            } else {
+                System.out.println("style.css introuvable");
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur CSS Mainview : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public Scene getScene() {

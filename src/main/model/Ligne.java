@@ -9,12 +9,27 @@ public class Ligne {
     private final List<Element> elements = new ArrayList<>();
 
     public Ligne(TypeLigne type) {
+        this(type, 0);
+    }
+
+    public Ligne(TypeLigne type, int indexLigne) {
         this.type = type;
 
-        // Exemple : obstacles sur les routes
         if (type == TypeLigne.ROUTE) {
-            elements.add(new Element(3, 0));
-            elements.add(new Element(10, 0));
+            initialiserRoute(indexLigne);
+        }
+    }
+
+    private void initialiserRoute(int indexLigne) {
+        // alterner les directions et positions pour casser l'effet colonnes fixes
+        if (indexLigne % 2 == 0) {
+            elements.add(new Element(1, 0, 1, 1));
+            elements.add(new Element(6, 0, 1, 1));
+            elements.add(new Element(11, 0, 1, 1));
+        } else {
+            elements.add(new Element(3, 0, 1, -1));
+            elements.add(new Element(8, 0, 1, -1));
+            elements.add(new Element(13, 0, 1, -1));
         }
     }
 
@@ -34,11 +49,10 @@ public class Ligne {
 
     public boolean estCollision(int x) {
         for (Element e : elements) {
-            if (e.getX() == x) return true;
+            if (e.occupeCase(x)) {
+                return true;
+            }
         }
         return false;
     }
 }
-
-
-

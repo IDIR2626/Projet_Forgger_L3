@@ -24,7 +24,7 @@ public class AudioManager {
     // 🎵 Musique d'accueil (Mainview)
     public static void playAccueilMusic() {
         stop();
-        mediaPlayer = load("/ressources/Audio/Musique Acceuille.mp3");
+        mediaPlayer = load("/Audio/Musique Acceuille.mp3");
         if (mediaPlayer != null) {
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
             mediaPlayer.setVolume(0.5);

@@ -17,41 +17,49 @@ public class GameOverView {
     private Button menuButton;
 
     public GameOverView(Stage stage, int score, boolean isWin) {
-        // --- CHOIX DE L’IMAGE SELON VICTOIRE / DÉFAITE ---
         String imageName = isWin ? "youwin.jpg" : "youlose.jpg";
 
         ImageView background = null;
         try {
-            java.net.URL imgUrl = getClass().getResource("Images/" + imageName);
+            java.net.URL imgUrl = getClass().getResource("/Images/" + imageName);
             if (imgUrl != null) {
                 background = new ImageView(new Image(imgUrl.toExternalForm()));
                 background.setFitWidth(900);
                 background.setFitHeight(700);
-                background.setPreserveRatio(true);
+                background.setPreserveRatio(false);
                 background.setSmooth(true);
             }
         } catch (Exception e) {
             System.out.println("Erreur image Game Over : " + e.getMessage());
         }
 
-        // --- SCORE ---
         Label scoreLabel = new Label("Score : " + score);
         scoreLabel.getStyleClass().add("score-label");
 
-        // --- BOUTON REJOUER ---
         retryButton = new Button("Rejouer");
         retryButton.getStyleClass().add("frogger-button");
 
-        // --- BOUTON MENU ---
         menuButton = new Button("Menu Principal");
         menuButton.getStyleClass().add("frogger-button");
 
-        // --- CONTENU CENTRÉ ---
+        // Actions des boutons
+        retryButton.setOnAction(e -> {
+            AudioManager.stop();
+            ViewManager.showGameView(stage);
+        });
+
+        menuButton.setOnAction(e -> {
+            AudioManager.stop();
+            ViewManager.showMenuView(stage);
+        });
+
         VBox content = new VBox(20, scoreLabel, retryButton, menuButton);
         content.setAlignment(Pos.CENTER);
 
         StackPane root = new StackPane();
-        if (background != null) root.getChildren().add(background);
+        if (background != null) {
+            root.getChildren().add(background);
+        }
         root.getChildren().add(content);
 
         scene = new Scene(root, 900, 700);

@@ -1,8 +1,11 @@
 package controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.Jeu;
 import vue.AudioManager;
 import vue.GameView;
@@ -13,43 +16,73 @@ public class GameController {
     private final Jeu jeu;
     private final GameView view;
     private final Stage stage;
+    private final Timeline gameLoop;
 
     public GameController(Stage stage) {
         this.stage = stage;
         this.jeu = new Jeu();
-        this.view = new GameView(stage, jeu);
+        this.view = new GameView(jeu);
 
         setupControls(view.getScene());
+
+        this.gameLoop = new Timeline(
+                new KeyFrame(Duration.millis(250), e -> tick()));
+        this.gameLoop.setCycleCount(Timeline.INDEFINITE);
+
         AudioManager.playGameMusic();
+        jeu.demarrer();
+        gameLoop.play();
     }
 
     private void setupControls(Scene scene) {
-        scene.setOnKeyPressed((KeyEvent e) -> {
-            switch (e.getCode()) {
-                case UP -> jeu.deplacerJoueurHaut();
-                case DOWN -> jeu.deplacerJoueurBas();
-                case LEFT -> jeu.deplacerJoueurGauche();
-                case RIGHT -> jeu.deplacerJoueurDroite();
-                case ESCAPE -> ViewManager.showMenuView(stage);
+        scene.setOnKeyPressed(e -> {
+            KeyCode code = e.getCode();
+
+            switch (code) {
+                case UP, Z -> jeu.deplacerJoueurHaut();
+                case DOWN, S -> jeu.deplacerJoueurBas();
+                case LEFT, Q -> jeu.deplacerJoueurGauche();
+                case RIGHT, D -> jeu.deplacerJoueurDroite();
+                case ESCAPE -> {
+                    stopGame();
+                    ViewManager.showMenuView(stage);
+                    return;
+                }
             }
 
-            jeu.miseAJour();
             view.draw();
-
-            if (jeu.isWin()) {
-                AudioManager.playWinMusic();
-                ViewManager.showGameOverView(stage, true, jeu.getScore().getScoreActuel());
-            }
-
-            if (jeu.isLose()) {
-                AudioManager.playLoseMusic();
-                ViewManager.showGameOverView(stage, false, jeu.getScore().getScoreActuel());
-            }
+            checkGameState();
         });
+    }
+
+    private void tick() {
+        jeu.update();
+        view.draw();
+        checkGameState();
+    }
+
+    private void checkGameState() {
+        if (jeu.isWin()) {
+            stopGame();
+            AudioManager.playWinMusic();
+            ViewManager.showGameOverView(stage, true, jeu.getScore().getScoreActuel());
+            return;
+        }
+
+        if (jeu.isLose()) {
+            stopGame();
+            AudioManager.playLoseMusic();
+            ViewManager.showGameOverView(stage, false, jeu.getScore().getScoreActuel());
+        }
+    }
+
+    private void stopGame() {
+        gameLoop.stop();
+        AudioManager.stop();
+        jeu.arreter();
     }
 
     public GameView getView() {
         return view;
     }
 }
-

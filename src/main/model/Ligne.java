@@ -17,19 +17,50 @@ public class Ligne {
 
         if (type == TypeLigne.ROUTE) {
             initialiserRoute(indexLigne);
+        } else if (type == TypeLigne.RIVIERE) {
+            initialiserRiviere(indexLigne);
+        } else if (type == TypeLigne.HERBE) {
+            initialiserObstaclesHerbe(indexLigne);
         }
     }
 
     private void initialiserRoute(int indexLigne) {
-        // alterner les directions et positions pour casser l'effet colonnes fixes
-        if (indexLigne % 2 == 0) {
+        if (indexLigne == 7) {
             elements.add(new Element(1, 0, 1, 1));
-            elements.add(new Element(6, 0, 1, 1));
-            elements.add(new Element(11, 0, 1, 1));
-        } else {
+            elements.add(new Element(7, 0, 1, 1));
+            elements.add(new Element(13, 0, 1, 1));
+        } else if (indexLigne == 8) {
             elements.add(new Element(3, 0, 1, -1));
-            elements.add(new Element(8, 0, 1, -1));
-            elements.add(new Element(13, 0, 1, -1));
+            elements.add(new Element(9, 0, 1, -1));
+            elements.add(new Element(14, 0, 1, -1));
+        }
+    }
+
+    private void initialiserRiviere(int indexLigne) {
+        if (indexLigne % 2 == 0) {
+            elements.add(new Element(0, 0, 3, 1));
+            elements.add(new Element(6, 0, 3, 1));
+            elements.add(new Element(12, 0, 3, 1));
+        } else {
+            elements.add(new Element(2, 0, 2, -1));
+            elements.add(new Element(7, 0, 2, -1));
+            elements.add(new Element(12, 0, 2, -1));
+        }
+    }
+
+    private void initialiserObstaclesHerbe(int indexLigne) {
+        if (indexLigne == 12) {
+            elements.add(new Element(3, 0, 1, 0));
+            elements.add(new Element(10, 0, 1, 0));
+        } else if (indexLigne == 13) {
+            elements.add(new Element(5, 0, 1, 0));
+            elements.add(new Element(12, 0, 1, 0));
+        } else if (indexLigne == 14) {
+            elements.add(new Element(2, 0, 1, 0));
+            elements.add(new Element(8, 0, 1, 0));
+        } else if (indexLigne == 15) {
+            elements.add(new Element(6, 0, 1, 0));
+            elements.add(new Element(11, 0, 1, 0));
         }
     }
 

@@ -6,10 +6,13 @@ import java.util.List;
 public class Jeu {
 
     private static final int POINTS_PAR_MONTEE = 10;
+    private static final int VIES_DEPART = 3;
 
     private boolean enCours = false;
     private boolean win = false;
     private boolean lose = false;
+
+    private int vies = VIES_DEPART;
 
     private final Joueur joueur;
     private final Score score;
@@ -27,10 +30,14 @@ public class Jeu {
         for (int y = 0; y < Grille.HAUTEUR; y++) {
             if (y == 0) {
                 grille.ajouterLigne(new Ligne(TypeLigne.ARRIVEE, y));
+            } else if (y >= 2 && y <= 5) {
+                grille.ajouterLigne(new Ligne(TypeLigne.RIVIERE, y));
+            } else if (y == 6 || y == 9) {
+                grille.ajouterLigne(new Ligne(TypeLigne.HERBE, y)); // trottoir
+            } else if (y == 7 || y == 8) {
+                grille.ajouterLigne(new Ligne(TypeLigne.ROUTE, y)); // seulement 2 voies
             } else if (y == Grille.HAUTEUR - 1) {
                 grille.ajouterLigne(new Ligne(TypeLigne.DEPART, y));
-            } else if (y >= 5 && y <= 14) {
-                grille.ajouterLigne(new Ligne(TypeLigne.ROUTE, y));
             } else {
                 grille.ajouterLigne(new Ligne(TypeLigne.HERBE, y));
             }
@@ -47,6 +54,10 @@ public class Jeu {
 
     public boolean isLose() {
         return lose;
+    }
+
+    public int getVies() {
+        return vies;
     }
 
     public Joueur getJoueur() {
@@ -77,25 +88,47 @@ public class Jeu {
         enCours = false;
         win = false;
         lose = false;
+        vies = VIES_DEPART;
         joueur.reinitialiser(Grille.LARGEUR / 2, Grille.HAUTEUR - 1);
         score.reinitialiser();
         notifierObservers();
     }
 
     public void miseAJour() {
-        if (!enCours)
+        if (!enCours) {
             return;
+        }
 
         grille.mettreAJour();
 
-        if (joueur.getY() == 0) {
+        int joueurX = joueur.getX();
+        int joueurY = joueur.getY();
+
+        if (joueurY == 0) {
             win = true;
             enCours = false;
+            notifierObservers();
+            return;
         }
 
-        if (grille.estCollision(joueur.getX(), joueur.getY())) {
-            lose = true;
-            enCours = false;
+        Ligne ligneJoueur = grille.getLignes().get(joueurY);
+
+        if (ligneJoueur.getType() == TypeLigne.ROUTE && grille.estCollision(joueurX, joueurY)) {
+            perdreUneVie();
+            notifierObservers();
+            return;
+        }
+
+        if (ligneJoueur.getType() == TypeLigne.RIVIERE && !grille.estCollision(joueurX, joueurY)) {
+            perdreUneVie();
+            notifierObservers();
+            return;
+        }
+
+        if (ligneJoueur.getType() == TypeLigne.HERBE && grille.estCollision(joueurX, joueurY)) {
+            perdreUneVie();
+            notifierObservers();
+            return;
         }
 
         notifierObservers();
@@ -105,11 +138,24 @@ public class Jeu {
         miseAJour();
     }
 
+    private void perdreUneVie() {
+        vies--;
+
+        if (vies <= 0) {
+            lose = true;
+            enCours = false;
+        } else {
+            joueur.reinitialiser(Grille.LARGEUR / 2, Grille.HAUTEUR - 1);
+        }
+    }
+
     public boolean deplacerJoueurHaut() {
         boolean ok = deplacerJoueur(0, -1);
+
         if (ok) {
             score.ajouterPoints(POINTS_PAR_MONTEE);
         }
+
         return ok;
     }
 
@@ -126,8 +172,9 @@ public class Jeu {
     }
 
     private boolean deplacerJoueur(int deltaX, int deltaY) {
-        if (!enCours)
+        if (!enCours) {
             return false;
+        }
 
         boolean deplacementEffectue = joueur.deplacer(deltaX, deltaY, Grille.LARGEUR, Grille.HAUTEUR);
 

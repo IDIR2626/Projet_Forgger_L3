@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Diagram de gantt" company="" webLink="http://" view-date="2026-01-31" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Diagram de gantt" company="" webLink="http://" view-date="2026-02-24" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd3" name="Nom" width="200" order="0"/>
@@ -52,31 +52,45 @@
             <task id="7" uid="6186d6c31f6f4db2bffada0da5010552" name="Classe Score" meeting="false" start="2026-02-06" duration="5" complete="100" expand="true"/>
             <task id="6" uid="060caac7cd9a4e358be218473ad906e2" name="Classe Jeu" meeting="false" start="2026-02-06" duration="5" complete="100" expand="true"/>
         </task>
-        <task id="19" uid="0409308e2a664a22b96fbb6576de2577" name="ressouces" meeting="false" start="2026-02-26" duration="1" complete="0" expand="false">
-            <task id="20" uid="4f3b181830774751a7a5a499d9638067" name="images" meeting="false" start="2026-02-26" duration="1" complete="0" expand="true"/>
+        <task id="19" uid="0409308e2a664a22b96fbb6576de2577" name="ressouces" meeting="false" start="2026-02-26" duration="52" complete="0" expand="true">
+            <task id="20" uid="4f3b181830774751a7a5a499d9638067" name="images" meeting="false" start="2026-02-26" duration="52" complete="0" expand="true"/>
             <task id="21" uid="d17bc3c03a6d42af8d50e03c2a9a6d61" name="audios" meeting="false" start="2026-02-26" duration="1" complete="0" expand="true"/>
             <task id="22" uid="c7062373dcb5413e927a356111708790" name="style" meeting="false" start="2026-02-26" duration="1" complete="0" expand="true"/>
         </task>
-        <task id="23" uid="ac79d2cfb5a844d2b4211a61104ec713" name="vue" meeting="false" start="2026-02-02" duration="33" complete="30" expand="false">
+        <task id="23" uid="ac79d2cfb5a844d2b4211a61104ec713" name="vue" meeting="false" start="2026-02-02" duration="72" complete="13" expand="true">
             <task id="33" uid="e3dfa3060f5f41079c2aaa4843acbbd4" name="ViewManager" color="#0033ff" meeting="false" start="2026-02-24" duration="4" complete="0" expand="true"/>
-            <task id="32" uid="3c0eca9acfb84ef5b41fdbcd45761d2e" name="SettingsView" color="#0033ff" meeting="false" start="2026-03-05" duration="3" complete="0" expand="true"/>
-            <task id="31" uid="e43d77aad4de4ffc9cb3761677618b34" name="RulesView" color="#0033ff" meeting="false" start="2026-03-05" duration="5" complete="0" expand="true"/>
-            <task id="30" uid="6b00e92a3ccb4d8a8952ef80b0cb941d" name="MenuView" color="#0033ff" meeting="false" start="2026-03-05" duration="3" complete="0" expand="true"/>
-            <task id="29" uid="c716a9f055634a67af1d70267ecc02ad" name="MainView" color="#0033ff" meeting="false" start="2026-03-05" duration="4" complete="0" expand="true"/>
-            <task id="28" uid="1a2d63a6acfe42d782a8726c76188d9e" name="GameView" color="#cc0066" meeting="false" start="2026-03-05" duration="10" complete="50" expand="true"/>
-            <task id="27" uid="3d0df73a64eb4f25ba884a42e1a3b284" name="GameOverView" color="#0033ff" meeting="false" start="2026-03-02" duration="3" complete="0" expand="true"/>
+            <task id="32" uid="3c0eca9acfb84ef5b41fdbcd45761d2e" name="SettingsView" color="#0033ff" meeting="false" start="2026-03-05" duration="48" complete="0" expand="true"/>
+            <task id="31" uid="e43d77aad4de4ffc9cb3761677618b34" name="RulesView" color="#0033ff" meeting="false" start="2026-03-05" duration="49" complete="0" expand="true"/>
+            <task id="30" uid="6b00e92a3ccb4d8a8952ef80b0cb941d" name="MenuView" color="#0033ff" meeting="false" start="2026-03-05" duration="36" complete="0" expand="true"/>
+            <task id="29" uid="c716a9f055634a67af1d70267ecc02ad" name="MainView" color="#0033ff" meeting="false" start="2026-03-05" duration="39" complete="0" expand="true"/>
+            <task id="28" uid="1a2d63a6acfe42d782a8726c76188d9e" name="D" color="#cc0066" meeting="false" start="2026-03-05" duration="48" complete="50" expand="true"/>
+            <task id="27" uid="3d0df73a64eb4f25ba884a42e1a3b284" name="GameOverView" color="#0033ff" meeting="false" start="2026-04-16" duration="15" complete="0" expand="true"/>
             <task id="26" uid="47f76c0adcfe4f98a83910e92d57edb8" name="FroggerApp" color="#cc0066" meeting="false" start="2026-02-02" duration="25" complete="40" thirdDate="2026-02-02" thirdDate-constraint="1" expand="true"/>
             <task id="25" uid="c63e882b9bdc4452a5e3c0aacb0bc6bb" name="AudioManager" color="#0033ff" meeting="false" start="2026-02-24" duration="3" complete="100" expand="true"/>
         </task>
-        <task id="35" uid="83cb627bda7c4487a130e8dc0cfbae7c" name="Controller" meeting="false" start="2026-03-05" duration="20" complete="54" expand="true">
+        <task id="35" uid="83cb627bda7c4487a130e8dc0cfbae7c" name="Controller" meeting="false" start="2026-03-05" duration="40" complete="45" expand="true">
             <task id="36" uid="30cee635ab624069a92300ebd02ce81d" name="GameOverController" color="#ff00ff" meeting="false" start="2026-03-09" duration="4" complete="100" expand="true"/>
             <task id="37" uid="ddb4a12f50da46dca5cc5c7f32c61673" name="MenuController" color="#ff00ff" meeting="false" start="2026-03-06" duration="3" complete="100" expand="true"/>
             <task id="38" uid="b8465b02d59c4599b97d24b25a54e3c4" name="RulesController" color="#ff00ff" meeting="false" start="2026-03-09" duration="4" complete="100" expand="true"/>
-            <task id="39" uid="473f42731ed7437ca9453da738a3af71" name="GameController" color="#cc0066" meeting="false" start="2026-03-05" duration="20" complete="30" expand="true"/>
+            <task id="39" uid="473f42731ed7437ca9453da738a3af71" name="GameController" color="#cc0066" meeting="false" start="2026-03-05" duration="40" complete="30" expand="true"/>
         </task>
     </tasks>
-    <resources/>
-    <allocations/>
+    <resources>
+        <resource id="0" name="Hocine Mohand Ouidir" function="Default:0" contacts="" phone=""/>
+        <resource id="1" name="Rayane Marouf" function="Default:0" contacts="" phone=""/>
+        <resource id="2" name="Yassmine Alaoua" function="Default:0" contacts="" phone=""/>
+        <resource id="3" name="Sid Ali  AKHEMOUM" function="Default:0" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="39" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="19" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="19" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="36" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="19" resource-id="2" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="38" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="19" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="37" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+    </allocations>
     <vacations/>
     <previous/>
     <roles roleset-name="Default"/>

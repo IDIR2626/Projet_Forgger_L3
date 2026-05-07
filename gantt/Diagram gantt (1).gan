@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Diagram de gantt" company="" webLink="http://" view-date="2026-02-17" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Diagram de gantt" company="" webLink="http://" view-date="2026-02-05" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="fr_FR">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd3" name="Nom" width="200" order="0"/>
@@ -39,18 +39,30 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" uid="ddc87e044f654623b6c47e9dc1c25dcc" name="Choix de thème" color="#3333ff" meeting="false" start="2026-02-04" duration="1" complete="100" expand="true"/>
-        <task id="1" uid="9d0b05f27a9340db92a534a2ba21dcaa" name="mis en place Github + vs code" color="#990099" meeting="false" start="2026-02-04" duration="1" complete="100" expand="true"/>
-        <task id="2" uid="91ec50356861452c8e1a4fe76fd10f7d" name="Diagramme de classe" color="#99ffff" meeting="false" start="2026-02-04" duration="2" complete="100" expand="true"/>
-        <task id="3" uid="50157dcb63574407b295bda880a6a1bf" name="Diagramme de gantt initial" color="#ccccff" meeting="false" start="2026-02-04" duration="1" complete="100" expand="true"/>
-        <task id="4" uid="dfae9411f8bf41de8751bfa16685cbda" name="modele" meeting="false" start="2026-02-05" duration="12" complete="100" expand="true">
+        <task id="0" uid="ddc87e044f654623b6c47e9dc1c25dcc" name="Choix de thème" color="#3333ff" meeting="false" start="2026-02-04" duration="1" complete="100" expand="true">
+            <depend id="1" type="2" difference="0" hardness="Strong"/>
+            <depend id="3" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="1" uid="9d0b05f27a9340db92a534a2ba21dcaa" name="mis en place Github + vs code" color="#990099" meeting="false" start="2026-02-05" duration="1" complete="100" expand="true">
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="2" uid="91ec50356861452c8e1a4fe76fd10f7d" name="Diagramme de classe" color="#99ffff" meeting="false" start="2026-02-06" duration="2" complete="100" expand="true"/>
+        <task id="3" uid="50157dcb63574407b295bda880a6a1bf" name="Diagramme de gantt initial" color="#ccccff" meeting="false" start="2026-02-05" duration="1" complete="100" expand="true"/>
+        <task id="4" uid="dfae9411f8bf41de8751bfa16685cbda" name="modele" meeting="false" start="2026-02-05" duration="31" complete="100" expand="true">
             <task id="5" uid="6927b32b6829465a93c32c018422d679" name="Classe Joueur" meeting="false" start="2026-02-05" duration="5" complete="100" expand="true"/>
-            <task id="14" uid="6e8c692bb358452d864ca7336db7c533" name="Classe element" meeting="false" start="2026-02-10" duration="9" complete="100" expand="true"/>
+            <task id="14" uid="6e8c692bb358452d864ca7336db7c533" name="Classe element" meeting="false" start="2026-02-10" duration="9" complete="100" expand="true">
+                <depend id="9" type="2" difference="0" hardness="Strong"/>
+            </task>
             <task id="11" uid="f4810a33d20f4cc19c21640d39c381cb" name="calsse typeElement" meeting="false" start="2026-02-16" duration="4" complete="100" expand="true"/>
-            <task id="9" uid="084b08be67fa443b83719d20b0bc5860" name="Classe Ligne" meeting="false" start="2026-02-10" duration="9" complete="100" expand="true"/>
-            <task id="8" uid="24cd18057d004a1894ac735caa58fb99" name="Classe Grill" meeting="false" start="2026-02-06" duration="5" complete="100" expand="true"/>
-            <task id="7" uid="6186d6c31f6f4db2bffada0da5010552" name="Classe Score" meeting="false" start="2026-02-06" duration="5" complete="100" expand="true"/>
-            <task id="6" uid="060caac7cd9a4e358be218473ad906e2" name="Classe Jeu" meeting="false" start="2026-02-06" duration="5" complete="100" expand="true"/>
+            <task id="9" uid="084b08be67fa443b83719d20b0bc5860" name="Classe Ligne" meeting="false" start="2026-02-23" duration="9" complete="100" expand="true">
+                <depend id="8" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="8" uid="24cd18057d004a1894ac735caa58fb99" name="Classe Grill" meeting="false" start="2026-03-06" duration="5" complete="100" expand="true">
+                <depend id="6" type="2" difference="0" hardness="Strong"/>
+                <depend id="7" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="7" uid="6186d6c31f6f4db2bffada0da5010552" name="Classe Score" meeting="false" start="2026-03-13" duration="5" complete="100" expand="true"/>
+            <task id="6" uid="060caac7cd9a4e358be218473ad906e2" name="Classe Jeu" meeting="false" start="2026-03-13" duration="5" complete="100" expand="true"/>
         </task>
         <task id="19" uid="0409308e2a664a22b96fbb6576de2577" name="ressouces" meeting="false" start="2026-02-26" duration="52" complete="61" expand="true">
             <task id="20" uid="4f3b181830774751a7a5a499d9638067" name="images" meeting="false" start="2026-02-26" duration="52" complete="60" expand="true"/>

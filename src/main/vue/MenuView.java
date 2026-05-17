@@ -139,6 +139,40 @@ public class MenuView {
         return quitBtn;
     }
 
+    public void showModeChoice(Runnable classicAction, Runnable toxicRailAction) {
+        Image backgroundImage = new Image(
+                getClass().getResource("/Images/2.png").toExternalForm());
+
+        ImageView backgroundView = new ImageView(backgroundImage);
+        backgroundView.setFitWidth(800);
+        backgroundView.setPreserveRatio(true);
+
+        Image logoImage = new Image(
+                getClass().getResource("/Images/1.png").toExternalForm());
+
+        ImageView logo = new ImageView(logoImage);
+        logo.setFitWidth(220);
+        logo.setPreserveRatio(true);
+
+        Button classicBtn = new Button("Mode classique\nRoute + Rivière");
+        Button toxicRailBtn = new Button("Mode avancé\nToxique + Ferroviaire");
+        Button backBtn = new Button("Retour");
+
+        classicBtn.getStyleClass().add("menu-button");
+        toxicRailBtn.getStyleClass().add("menu-button");
+        backBtn.getStyleClass().add("menu-button");
+
+        classicBtn.setOnAction(e -> playButtonAnimation(classicBtn, classicAction));
+        toxicRailBtn.setOnAction(e -> playButtonAnimation(toxicRailBtn, toxicRailAction));
+        backBtn.setOnAction(e -> playButtonAnimation(backBtn, this::setupContent));
+
+        VBox box = new VBox(35, logo, classicBtn, toxicRailBtn, backBtn);
+        box.setAlignment(Pos.CENTER);
+
+        StackPane stack = new StackPane(backgroundView, box);
+        root.setCenter(stack);
+    }
+
     public Scene getScene() {
         return scene;
     }

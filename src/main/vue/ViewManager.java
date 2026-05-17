@@ -4,6 +4,7 @@ import controller.GameController;
 import controller.MenuController;
 import controller.RulesController;
 import javafx.stage.Stage;
+import model.ModeJeu;
 
 public class ViewManager {
 
@@ -23,7 +24,11 @@ public class ViewManager {
     }
 
     public static void showGameView(Stage stage) {
-        GameController controller = new GameController(stage);
+        showGameView(stage, ModeJeu.CLASSIQUE);
+    }
+
+    public static void showGameView(Stage stage, ModeJeu modeJeu) {
+        GameController controller = new GameController(stage, modeJeu);
         stage.setScene(controller.getView().getScene());
     }
 

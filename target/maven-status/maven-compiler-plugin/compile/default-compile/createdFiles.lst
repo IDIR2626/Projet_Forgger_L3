@@ -1,9 +1,5 @@
 model\Element.class
 model\GameObserver.class
-controller\RulesController.class
-vue\SettingsView.class
-vue\GameOverView.class
-controller\GameController.class
 model\Grille.class
 model\Score.class
 model\Ligne.class
@@ -11,11 +7,7 @@ model\TypeLigne.class
 vue\MenuView.class
 model\Jeu.class
 vue\GameView$1.class
-vue\Mainview.class
 vue\AudioManager.class
 controller\MenuController.class
-vue\ViewManager.class
 controller\GameController$1.class
-vue\FroggerApp.class
 model\Joueur.class
-vue\RulesView.class

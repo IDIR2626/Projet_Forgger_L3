@@ -5,5 +5,7 @@ public enum TypeLigne {
     HERBE,
     RIVIERE,
     ARRIVEE,
-    DEPART
+    DEPART,
+    FERROVIAIRE,
+    TOXIQUE
 }

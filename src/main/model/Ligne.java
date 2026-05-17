@@ -21,6 +21,31 @@ public class Ligne {
             initialiserRiviere(indexLigne);
         } else if (type == TypeLigne.HERBE) {
             initialiserObstaclesHerbe(indexLigne);
+        } else if (type == TypeLigne.FERROVIAIRE) {
+            initialiserFerroviaire(indexLigne);
+        } else if (type == TypeLigne.TOXIQUE) {
+            initialiserToxique(indexLigne);
+        }
+    }
+
+    private void initialiserToxique(int indexLigne) {
+        if (indexLigne % 2 == 0) {
+            elements.add(new Element(0, 0, 2, 1));
+            elements.add(new Element(5, 0, 2, 1));
+            elements.add(new Element(10, 0, 2, 1));
+        } else {
+            elements.add(new Element(2, 0, 3, -1));
+            elements.add(new Element(8, 0, 3, -1));
+        }
+    }
+
+    private void initialiserFerroviaire(int indexLigne) {
+        if (indexLigne == 7) {
+            elements.add(new Element(0, 0, 4, 1));
+            elements.add(new Element(8, 0, 4, 1));
+        } else if (indexLigne == 8) {
+            elements.add(new Element(4, 0, 4, -1));
+            elements.add(new Element(12, 0, 4, -1));
         }
     }
 

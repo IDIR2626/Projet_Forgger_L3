@@ -14,6 +14,7 @@ import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Screen;
 import javafx.scene.image.Image;
 
 import model.*;
@@ -58,15 +59,23 @@ public class GameView {
 
         HBox topBar = buildHud();
 
-        StackPane center = new StackPane(canvas);
+        StackPane gameWrapper = new StackPane(canvas);
+        gameWrapper.setAlignment(Pos.TOP_CENTER);
+
+        StackPane center = new StackPane(gameWrapper);
+        center.setStyle("-fx-background-color: #071421;");
 
         BorderPane root = new BorderPane();
         root.setTop(topBar);
         root.setCenter(center);
-
         root.setStyle("-fx-background-color: #0D1B2A;");
 
-        scene = new Scene(root);
+        scene = new Scene(root, Screen.getPrimary().getBounds().getWidth(),
+                Screen.getPrimary().getBounds().getHeight());
+
+        center.widthProperty().addListener((obs, oldVal, newVal) -> resizeGame(gameWrapper, center, topBar));
+        center.heightProperty().addListener((obs, oldVal, newVal) -> resizeGame(gameWrapper, center, topBar));
+
         draw();
     }
 
@@ -200,6 +209,8 @@ public class GameView {
             case HERBE -> drawGrass(gc, py, y);
             case ROUTE -> drawRoad(gc, py);
             case RIVIERE -> drawRiver(gc, py, y);
+            case TOXIQUE -> drawToxic(gc, py, y);
+            case FERROVIAIRE -> drawRailway(gc, py);
             case ARRIVEE -> drawGoal(gc, py);
             case DEPART -> drawGrass(gc, py, y);
         }
@@ -208,6 +219,61 @@ public class GameView {
     // ══════════════════════════════════════════════════════════════════════════
     // TUILES
     // ══════════════════════════════════════════════════════════════════════════
+
+    private void drawRailway(GraphicsContext gc, double py) {
+        gc.setFill(Color.web("#343434"));
+        gc.fillRect(0, py, LARGEUR_CANVAS, TAILLE_CASE);
+
+        gc.setFill(Color.rgb(255, 255, 255, 0.04));
+        for (int x = 0; x < LARGEUR_CANVAS; x += 5) {
+            for (int yy = 0; yy < TAILLE_CASE; yy += 5) {
+                if ((x + yy) % 10 == 0) {
+                    gc.fillRect(x, py + yy, 2, 2);
+                }
+            }
+        }
+
+        gc.setStroke(Color.web("#B0BEC5"));
+        gc.setLineWidth(4);
+        gc.strokeLine(0, py + 14, LARGEUR_CANVAS, py + 14);
+        gc.strokeLine(0, py + TAILLE_CASE - 14, LARGEUR_CANVAS, py + TAILLE_CASE - 14);
+
+        gc.setStroke(Color.web("#6D4C41"));
+        gc.setLineWidth(4);
+        for (int x = 0; x < LARGEUR_CANVAS; x += 38) {
+            gc.strokeLine(x, py + 8, x + 16, py + TAILLE_CASE - 8);
+        }
+
+        gc.setFill(Color.rgb(0, 0, 0, 0.35));
+        gc.fillRect(0, py, LARGEUR_CANVAS, 4);
+        gc.fillRect(0, py + TAILLE_CASE - 4, LARGEUR_CANVAS, 4);
+    }
+
+    private void drawToxic(GraphicsContext gc, double py, int y) {
+        gc.setFill(Color.web("#4A0072"));
+        gc.fillRect(0, py, LARGEUR_CANVAS, TAILLE_CASE);
+
+        gc.setFill(Color.web("#7B1FA2"));
+        for (int x = 0; x < LARGEUR_CANVAS; x += 34) {
+            gc.fillRect(x, py, 16, TAILLE_CASE);
+        }
+
+        double offset = (y * 19) % 45;
+
+        gc.setFill(Color.rgb(0, 255, 120, 0.25));
+        for (int x = -(int) offset; x < LARGEUR_CANVAS; x += 65) {
+            gc.fillOval(x, py + 8, 42, 11);
+        }
+
+        gc.setFill(Color.rgb(255, 255, 255, 0.12));
+        for (int x = (int) offset; x < LARGEUR_CANVAS; x += 80) {
+            gc.fillOval(x, py + TAILLE_CASE - 17, 28, 7);
+        }
+
+        gc.setFill(Color.rgb(0, 0, 0, 0.25));
+        gc.fillRect(0, py, LARGEUR_CANVAS, 3);
+        gc.fillRect(0, py + TAILLE_CASE - 3, LARGEUR_CANVAS, 3);
+    }
 
     private void drawGrass(GraphicsContext gc, double py, int y) {
         if (y == 6 || y == 9) {
@@ -346,8 +412,63 @@ public class GameView {
                 drawLog(gc, px, py, e.getTaille());
             } else if (ligne.getType() == TypeLigne.HERBE) {
                 drawObstacle(gc, px, py, i);
+            } else if (ligne.getType() == TypeLigne.FERROVIAIRE) {
+                drawTrain(gc, px, py, e.getTaille(), e.getVitesse());
+            } else if (ligne.getType() == TypeLigne.TOXIQUE) {
+                drawToxicPlatform(gc, px, py, e.getTaille());
             }
             i++;
+        }
+    }
+
+    private void drawToxicPlatform(GraphicsContext gc, double px, double py, int taille) {
+        double w = taille * TAILLE_CASE - 6;
+        double h = TAILLE_CASE * 0.55;
+        double y = py + (TAILLE_CASE - h) / 2.0;
+
+        gc.setFill(Color.rgb(0, 0, 0, 0.35));
+        gc.fillOval(px + 8, y + h - 4, w - 16, 10);
+
+        gc.setFill(Color.web("#00C853"));
+        gc.fillRoundRect(px + 3, y, w, h, 14, 14);
+
+        gc.setFill(Color.web("#69F0AE"));
+        gc.fillRoundRect(px + 8, y + 4, w - 16, h * 0.35, 10, 10);
+
+        gc.setStroke(Color.web("#1B5E20"));
+        gc.setLineWidth(2);
+        for (int i = 1; i < taille; i++) {
+            double lx = px + i * TAILLE_CASE - 3;
+            gc.strokeLine(lx, y + 4, lx, y + h - 4);
+        }
+    }
+
+    private void drawTrain(GraphicsContext gc, double px, double py, int taille, int vitesse) {
+        double trainW = taille * TAILLE_CASE - 4;
+        double trainH = TAILLE_CASE * 0.78;
+        double x = px + 2;
+        double y = py + (TAILLE_CASE - trainH) / 2.0;
+
+        gc.setFill(Color.rgb(0, 0, 0, 0.45));
+        gc.fillOval(x + 10, y + trainH - 3, trainW - 20, 10);
+
+        gc.setFill(Color.web("#D32F2F"));
+        gc.fillRoundRect(x, y, trainW, trainH, 8, 8);
+
+        gc.setFill(Color.web("#FF5252"));
+        gc.fillRoundRect(x + 5, y + 5, trainW - 10, trainH * 0.35, 6, 6);
+
+        gc.setFill(Color.web("#263238"));
+        for (int i = 0; i < taille; i++) {
+            double wx = x + 12 + i * TAILLE_CASE;
+            gc.fillRoundRect(wx, y + 9, 24, 12, 4, 4);
+        }
+
+        gc.setFill(Color.web("#FFD600"));
+        if (vitesse > 0) {
+            gc.fillOval(x + trainW - 10, y + trainH / 2 - 4, 8, 8);
+        } else {
+            gc.fillOval(x + 2, y + trainH / 2 - 4, 8, 8);
         }
     }
 
@@ -495,6 +616,24 @@ public class GameView {
 
         int v = jeu.getVies();
         livesValue.setText("♥ ".repeat(Math.max(0, v)).trim());
+    }
+
+    private void resizeGame(StackPane gameWrapper, StackPane center, HBox topBar) {
+        double availableWidth = center.getWidth();
+        double availableHeight = center.getHeight();
+
+        if (availableWidth <= 0 || availableHeight <= 0) {
+            return;
+        }
+
+        double scaleX = availableWidth / LARGEUR_CANVAS;
+        double scaleY = availableHeight / HAUTEUR_CANVAS;
+
+        // On garde les proportions du design
+        double scale = Math.min(scaleX, scaleY);
+
+        gameWrapper.setScaleX(scale);
+        gameWrapper.setScaleY(scale);
     }
 
     public Scene getScene() {

@@ -10,6 +10,7 @@ import model.Jeu;
 import vue.AudioManager;
 import vue.GameView;
 import vue.ViewManager;
+import model.ModeJeu;
 
 public class GameController {
 
@@ -19,8 +20,12 @@ public class GameController {
     private final Timeline gameLoop;
 
     public GameController(Stage stage) {
+        this(stage, ModeJeu.CLASSIQUE);
+    }
+
+    public GameController(Stage stage, ModeJeu modeJeu) {
         this.stage = stage;
-        this.jeu = new Jeu();
+        this.jeu = new Jeu(modeJeu);
         this.view = new GameView(jeu);
 
         setupControls(view.getScene());

@@ -4,6 +4,7 @@ import javafx.stage.Stage;
 import vue.MenuView;
 import vue.ViewManager;
 import vue.AudioManager;
+import model.ModeJeu;
 
 public class MenuController {
 
@@ -13,8 +14,15 @@ public class MenuController {
         this.view = new MenuView(stage);
 
         view.getStartButton().setOnAction(e -> {
-            AudioManager.stop();
-            ViewManager.showGameView(stage);
+            view.showModeChoice(
+                    () -> {
+                        AudioManager.stop();
+                        ViewManager.showGameView(stage, ModeJeu.CLASSIQUE);
+                    },
+                    () -> {
+                        AudioManager.stop();
+                        ViewManager.showGameView(stage, ModeJeu.TOXIQUE_FERROVIAIRE);
+                    });
         });
 
         view.getRulesButton().setOnAction(e -> {

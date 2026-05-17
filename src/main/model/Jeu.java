@@ -7,6 +7,7 @@ public class Jeu {
 
     private static final int POINTS_PAR_MONTEE = 10;
     private static final int VIES_DEPART = 3;
+    private final ModeJeu modeJeu;
 
     private boolean enCours = false;
     private boolean win = false;
@@ -20,6 +21,11 @@ public class Jeu {
     private final List<GameObserver> observers = new ArrayList<>();
 
     public Jeu() {
+        this(ModeJeu.CLASSIQUE);
+    }
+
+    public Jeu(ModeJeu modeJeu) {
+        this.modeJeu = modeJeu;
         joueur = new Joueur(Grille.LARGEUR / 2, Grille.HAUTEUR - 1);
         score = new Score();
         grille = new Grille();
@@ -30,16 +36,30 @@ public class Jeu {
         for (int y = 0; y < Grille.HAUTEUR; y++) {
             if (y == 0) {
                 grille.ajouterLigne(new Ligne(TypeLigne.ARRIVEE, y));
-            } else if (y >= 2 && y <= 5) {
-                grille.ajouterLigne(new Ligne(TypeLigne.RIVIERE, y));
-            } else if (y == 6 || y == 9) {
-                grille.ajouterLigne(new Ligne(TypeLigne.HERBE, y)); // trottoir
-            } else if (y == 7 || y == 8) {
-                grille.ajouterLigne(new Ligne(TypeLigne.ROUTE, y)); // seulement 2 voies
-            } else if (y == Grille.HAUTEUR - 1) {
-                grille.ajouterLigne(new Ligne(TypeLigne.DEPART, y));
+            } else if (modeJeu == ModeJeu.CLASSIQUE) {
+                if (y >= 2 && y <= 5) {
+                    grille.ajouterLigne(new Ligne(TypeLigne.RIVIERE, y));
+                } else if (y == 6 || y == 9) {
+                    grille.ajouterLigne(new Ligne(TypeLigne.HERBE, y));
+                } else if (y == 7 || y == 8) {
+                    grille.ajouterLigne(new Ligne(TypeLigne.ROUTE, y));
+                } else if (y == Grille.HAUTEUR - 1) {
+                    grille.ajouterLigne(new Ligne(TypeLigne.DEPART, y));
+                } else {
+                    grille.ajouterLigne(new Ligne(TypeLigne.HERBE, y));
+                }
             } else {
-                grille.ajouterLigne(new Ligne(TypeLigne.HERBE, y));
+                if (y >= 2 && y <= 5) {
+                    grille.ajouterLigne(new Ligne(TypeLigne.TOXIQUE, y));
+                } else if (y == 6 || y == 9) {
+                    grille.ajouterLigne(new Ligne(TypeLigne.HERBE, y));
+                } else if (y == 7 || y == 8) {
+                    grille.ajouterLigne(new Ligne(TypeLigne.FERROVIAIRE, y));
+                } else if (y == Grille.HAUTEUR - 1) {
+                    grille.ajouterLigne(new Ligne(TypeLigne.DEPART, y));
+                } else {
+                    grille.ajouterLigne(new Ligne(TypeLigne.HERBE, y));
+                }
             }
         }
     }
@@ -126,6 +146,18 @@ public class Jeu {
         }
 
         if (ligneJoueur.getType() == TypeLigne.HERBE && grille.estCollision(joueurX, joueurY)) {
+            perdreUneVie();
+            notifierObservers();
+            return;
+        }
+
+        if (ligneJoueur.getType() == TypeLigne.FERROVIAIRE && grille.estCollision(joueurX, joueurY)) {
+            perdreUneVie();
+            notifierObservers();
+            return;
+        }
+
+        if (ligneJoueur.getType() == TypeLigne.TOXIQUE && !grille.estCollision(joueurX, joueurY)) {
             perdreUneVie();
             notifierObservers();
             return;

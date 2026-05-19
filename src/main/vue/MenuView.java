@@ -9,194 +9,147 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MenuView {
 
-    private final Stage stage;
+    private final Stage      stage;
     private final BorderPane root;
-    private final Scene scene;
+    private final Scene      scene;
 
-    // buttons need to be fields so other classes can reference them
-    private Button startBtn;
-    private Button rulesBtn;
-    private Button settingsBtn;
-    private Button quitBtn;
+    public  Button startBtn;
+    public Button rulesBtn;
+    public Button settingsBtn;
+    public Button quitBtn;
 
     public MenuView(Stage stage) {
         this.stage = stage;
-        this.root = new BorderPane();
+        this.root  = new BorderPane();
 
-        // Utiliser la taille de l'écran pour le plein écran
-        double screenWidth = Screen.getPrimary().getBounds().getWidth();
-        double screenHeight = Screen.getPrimary().getBounds().getHeight();
-        this.scene = new Scene(root, screenWidth, screenHeight);
+        double w = Screen.getPrimary().getBounds().getWidth();
+        double h = Screen.getPrimary().getBounds().getHeight();
+        this.scene = new Scene(root, w, h);
 
-        // Arrière-plan vert avec dégradé incluant du jaune
         root.setStyle("-fx-background-color: linear-gradient(to bottom, #90EE90, yellow, #006400);");
-
-        // Appliquer l'effet de luminosité global
         root.setEffect(AudioManager.getGlobalColorAdjust());
 
         setupContent();
         applyStyle();
-        AudioManager.playGameMusic(); // 🎵 Musique du menu (musique jeu 3)
+        AudioManager.playGameMusic();
     }
 
-    private void setupContent() {
+    void setupContent() {
 
-        // Obtenir la taille de l'écran
-        double screenWidth = Screen.getPrimary().getBounds().getWidth();
-        double screenHeight = Screen.getPrimary().getBounds().getHeight();
-
-        // --- Image de fond ---
-        Image backgroundImage = new Image(
-                getClass().getResource("/Images/2.png").toExternalForm());
-
-        ImageView backgroundView = new ImageView(backgroundImage);
+        ImageView backgroundView = new ImageView(
+                new Image(getClass().getResource("/Images/2.png").toExternalForm()));
         backgroundView.setFitWidth(800);
         backgroundView.setPreserveRatio(true);
 
-        // --- Logo ---
-        Image logoImage = new Image(
-                getClass().getResource("/Images/1.png").toExternalForm());
-
-        ImageView logo = new ImageView(logoImage);
+        ImageView logo = new ImageView(
+                new Image(getClass().getResource("/Images/1.png").toExternalForm()));
         logo.setFitWidth(250);
         logo.setPreserveRatio(true);
 
-        // --- Boutons ---
-        startBtn = new Button("Start Game");
-        rulesBtn = new Button("Rules");
+        startBtn    = new Button("Start Game");
+        rulesBtn    = new Button("Rules");
         settingsBtn = new Button("Settings");
-        quitBtn = new Button("Quit");
+        quitBtn     = new Button("Quit");
 
         startBtn.getStyleClass().add("menu-button");
         rulesBtn.getStyleClass().add("menu-button");
         settingsBtn.getStyleClass().add("menu-button");
         quitBtn.getStyleClass().add("menu-button");
 
-        // Actions avec animation (sans navigation)
-        startBtn.setOnAction(e -> {
-            playButtonAnimation(startBtn, () -> {
-                // Juste l'animation, pas de navigation
-            });
-        });
-
-        rulesBtn.setOnAction(e -> {
-            playButtonAnimation(rulesBtn, () -> {
-                // Juste l'animation, pas de navigation
-            });
-        });
-
-        settingsBtn.setOnAction(e -> {
+        // Branche le bouton Settings
+        settingsBtn.setOnAction(e ->
             playButtonAnimation(settingsBtn, () -> {
-                ViewManager.showSettingsView(stage);
-            });
-        });
+                try {
+                    ViewManager.showSettingsView(stage);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    System.out.println("Erreur lors de l'ouverture des paramètres : " + ex.getMessage());
+                }
+            })
+        );
 
-        quitBtn.setOnAction(e -> {
-            playButtonAnimation(quitBtn, () -> {
-                // Juste l'animation, pas de navigation
-            });
-        });
+        // Branche le bouton Rules pour affichage direct dans le thème du jeu
+        rulesBtn.setOnAction(e ->
+            playButtonAnimation(rulesBtn, () -> {
+                try {
+                    ViewManager.showRulesView(stage);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    System.out.println("Erreur lors de l'ouverture des règles : " + ex.getMessage());
+                }
+            })
+        );
 
-        // --- Layout des boutons ---
         VBox box = new VBox(40, logo, startBtn, rulesBtn, settingsBtn, quitBtn);
         box.setAlignment(Pos.CENTER);
 
-        // --- Superposition : fond + contenu ---
-        StackPane stack = new StackPane(backgroundView, box);
-        root.setCenter(stack);
+        root.setCenter(new StackPane(backgroundView, box));
     }
 
-    private void applyStyle() {
+    public  void applyStyle() {
         scene.getStylesheets().add(
                 getClass().getResource("/style.css").toExternalForm());
     }
 
-    public Button getStartButton() {
-        return startBtn;
-    }
-
-    public Button getRulesButton() {
-        return rulesBtn;
-    }
-
-    public Button getSettingsButton() {
-        return settingsBtn;
-    }
-
-    public Button getQuitButton() {
-        return quitBtn;
-    }
+    public Button getStartButton()    { return startBtn; }
+    public Button getRulesButton()    { return rulesBtn; }
+    public Button getSettingsButton() { return settingsBtn; }
+    public Button getQuitButton()     { return quitBtn; }
+    public Scene  getScene()          { return scene; }
 
     public void showModeChoice(Runnable classicAction, Runnable toxicRailAction) {
-        Image backgroundImage = new Image(
-                getClass().getResource("/Images/2.png").toExternalForm());
 
-        ImageView backgroundView = new ImageView(backgroundImage);
+        ImageView backgroundView = new ImageView(
+                new Image(getClass().getResource("/Images/2.png").toExternalForm()));
         backgroundView.setFitWidth(800);
         backgroundView.setPreserveRatio(true);
 
-        Image logoImage = new Image(
-                getClass().getResource("/Images/1.png").toExternalForm());
-
-        ImageView logo = new ImageView(logoImage);
+        ImageView logo = new ImageView(
+                new Image(getClass().getResource("/Images/1.png").toExternalForm()));
         logo.setFitWidth(220);
         logo.setPreserveRatio(true);
 
-        Button classicBtn = new Button("Mode classique\nRoute + Rivière");
+        Button classicBtn   = new Button("Mode classique\nRoute + Rivière");
         Button toxicRailBtn = new Button("Mode avancé\nToxique + Ferroviaire");
-        Button backBtn = new Button("Retour");
+        Button backBtn      = new Button("Retour");
 
         classicBtn.getStyleClass().add("menu-button");
         toxicRailBtn.getStyleClass().add("menu-button");
         backBtn.getStyleClass().add("menu-button");
 
-        classicBtn.setOnAction(e -> playButtonAnimation(classicBtn, classicAction));
+        classicBtn.setOnAction(e   -> playButtonAnimation(classicBtn,   classicAction));
         toxicRailBtn.setOnAction(e -> playButtonAnimation(toxicRailBtn, toxicRailAction));
-        backBtn.setOnAction(e -> playButtonAnimation(backBtn, this::setupContent));
+        backBtn.setOnAction(e      -> playButtonAnimation(backBtn,      this::setupContent));
 
         VBox box = new VBox(35, logo, classicBtn, toxicRailBtn, backBtn);
         box.setAlignment(Pos.CENTER);
 
-        StackPane stack = new StackPane(backgroundView, box);
-        root.setCenter(stack);
+        root.setCenter(new StackPane(backgroundView, box));
     }
 
-    public Scene getScene() {
-        return scene;
-    }
-
-    // Méthode pour appliquer l'animation au clic du bouton
-    private void playButtonAnimation(Button button, Runnable action) {
-        // Animation d'agrandissement
+    public void playButtonAnimation(Button button, Runnable action) {
         ScaleTransition scaleUp = new ScaleTransition(Duration.millis(100), button);
         scaleUp.setToX(1.15);
         scaleUp.setToY(1.15);
 
-        // Animation de rétrécissement
         ScaleTransition scaleDown = new ScaleTransition(Duration.millis(100), button);
         scaleDown.setToX(1.0);
         scaleDown.setToY(1.0);
 
-        // Animation d'opacité
         FadeTransition fade = new FadeTransition(Duration.millis(200), button);
         fade.setFromValue(1.0);
         fade.setToValue(0.8);
         fade.setAutoReverse(true);
         fade.setCycleCount(1);
 
-        // Chaîner les animations et exécuter l'action à la fin
         SequentialTransition transition = new SequentialTransition(scaleUp, scaleDown, fade);
         transition.setOnFinished(e -> action.run());
         transition.play();

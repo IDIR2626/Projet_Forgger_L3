@@ -2,7 +2,6 @@ package vue;
 
 import controller.GameController;
 import controller.MenuController;
-import controller.RulesController;
 import javafx.stage.Stage;
 import model.ModeJeu;
 
@@ -13,7 +12,6 @@ public class ViewManager {
         stage.setScene(main.getScene());
     }
 
-    // convenience alias for old call sites
     public static void showMenu(Stage stage) {
         showMenuView(stage);
     }
@@ -33,8 +31,16 @@ public class ViewManager {
     }
 
     public static void showRulesView(Stage stage) {
-        RulesController controller = new RulesController(stage);
-        stage.setScene(controller.getView().getScene());
+        try {
+            System.out.println("=== showRulesView appelé ===");
+            RulesView view = new RulesView(stage);
+            System.out.println("=== RulesView créé ===");
+            stage.setScene(view.getScene());
+            System.out.println("=== Scene changée ===");
+        } catch (Exception ex) {
+            System.out.println("=== ERREUR dans showRulesView ===");
+            ex.printStackTrace();
+        }
     }
 
     public static void showGameOverView(Stage stage, boolean win, int score) {

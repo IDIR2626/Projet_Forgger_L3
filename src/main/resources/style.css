@@ -1,26 +1,87 @@
-/* Menu Buttons Styling - Clean Green Theme */
+/* ═══════════════════════════════════════════════════════
+   FROGGER — Feuille de style globale
+   Thème : vert forêt / jaune / noir
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Boutons du menu ────────────────────────────────── */
 .menu-button {
-    -fx-font-family: "Arial Black";
-    -fx-font-size: 26px;
-    -fx-padding: 15px 50px;
-    -fx-background-color: linear-gradient(to bottom, #90EE90, #006400);
-    -fx-text-fill: white;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
-    -fx-border-width: 3px;
-    -fx-border-color: yellow;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
+    -fx-font-family:       "Arial Black";
+    -fx-font-size:         22px;
+    -fx-font-weight:       bold;
+    -fx-padding:           14px 55px;
+    -fx-background-color:  linear-gradient(to bottom, #90EE90, #006400);
+    -fx-text-fill:         white;
+    -fx-background-radius: 25px;
+    -fx-border-radius:     25px;
+    -fx-border-color:      #FFD600;
+    -fx-border-width:      3px;
+    -fx-cursor:            hand;
+    -fx-effect:            dropshadow(gaussian, rgba(0,100,0,0.6), 10, 0.2, 0, 3);
+    -fx-min-width:         240px;
 }
 
 .menu-button:hover {
     -fx-background-color: linear-gradient(to bottom, #ADFF2F, #228B22);
-    -fx-text-fill: white;
-    -fx-border-color: yellow;
+    -fx-border-color:     #FFD600;
+    -fx-effect:           dropshadow(gaussian, rgba(255,214,0,0.75), 18, 0.3, 0, 0);
+    -fx-text-fill:        #FFD600;
 }
 
 .menu-button:pressed {
-    -fx-background-color: linear-gradient(to bottom, yellow, #228B22);
-    -fx-text-fill: white;
-    -fx-border-color: yellow;
+    -fx-background-color: linear-gradient(to bottom, #FFD600, #228B22);
+    -fx-text-fill:        white;
+    -fx-scale-x:          0.97;
+    -fx-scale-y:          0.97;
+}
+
+/* ── Titres (RulesView, GameOverView…) ──────────────── */
+.titre {
+    -fx-font-family:  "Arial Black";
+    -fx-font-size:    38px;
+    -fx-font-weight:  bold;
+    -fx-text-fill:    #FFD600;
+    -fx-effect:       dropshadow(gaussian, rgba(0,0,0,0.8), 8, 0, 0, 3);
+}
+
+/* ── Textes courants ────────────────────────────────── */
+.texte {
+    -fx-font-family: "Arial";
+    -fx-font-size:   16px;
+    -fx-text-fill:   #90EE90;
+    -fx-line-spacing: 6;
+}
+
+/* ── Labels score (GameOverView) ────────────────────── */
+.score-label {
+    -fx-font-family: "Arial Black";
+    -fx-font-size:   42px;
+    -fx-font-weight: bold;
+    -fx-text-fill:   #FFD600;
+    -fx-effect:      dropshadow(gaussian, #FFD600, 14, 0.3, 0, 0);
+}
+
+/* ── Sliders (SettingsView) ─────────────────────────── */
+.slider .track {
+    -fx-background-color:  linear-gradient(to right, #006400, #90EE90);
+    -fx-background-radius: 4;
+    -fx-pref-height:       8;
+}
+
+.slider .thumb {
+    -fx-background-color:  #FFD600;
+    -fx-background-radius: 50%;
+    -fx-pref-width:        20;
+    -fx-pref-height:       20;
+    -fx-effect:            dropshadow(gaussian, rgba(0,0,0,0.5), 4, 0, 0, 2);
+}
+
+.slider .thumb:hover {
+    -fx-background-color: #ADFF2F;
+}
+
+/* ── Séparateurs ────────────────────────────────────── */
+.separator .line {
+    -fx-border-color:     #FFD600;
+    -fx-border-width:     1.5px;
+    -fx-border-style:     solid;
 }

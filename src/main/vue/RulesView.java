@@ -47,9 +47,17 @@ public class RulesView {
 
         for (String r : regles) {
             Label l = new Label(r);
-            l.setFont(Font.font("Arial", FontWeight.NORMAL, 17));
-            l.setTextFill(Color.web("#90EE90"));
+            l.setFont(Font.font("Arial", FontWeight.BOLD, 22));
+            l.setTextFill(Color.web("#FFD600"));
             l.setWrapText(true);
+            l.setStyle("-fx-background-color: rgba(0, 100, 0, 0.5); " +
+                       "-fx-background-radius: 15; " +
+                       "-fx-padding: 12 18; " +
+                       "-fx-text-fill: #FFD600; " +
+                       "-fx-border-color: #90EE90; " +
+                       "-fx-border-width: 2; " +
+                       "-fx-border-radius: 15; " +
+                       "-fx-effect: dropshadow(gaussian, #90EE90, 8, 0.3, 0, 0);");
             reglesBox.getChildren().add(l);
         }
 

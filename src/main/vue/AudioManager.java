@@ -55,7 +55,7 @@ public class AudioManager {
     public static void playGameMusic() {
         stop();
         currentMusic = "game";
-        mediaPlayer = load("/Audio/musique jeu 1.mp3");
+        mediaPlayer = load("/Audio/musique jeu 2.mp3");
         if (mediaPlayer != null) {
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
             mediaPlayer.setVolume(0.5);
@@ -93,6 +93,21 @@ public class AudioManager {
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
             mediaPlayer.setVolume(0.5);
             mediaPlayer.play();
+        }
+    }
+
+    // 📖 Musique de la vue des règles
+    public static void playRulesMusic() {
+        stop();
+        currentMusic = "rules";
+        mediaPlayer = load("/Audio/musique jeu 3.mp3");
+        if (mediaPlayer != null) {
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.setVolume(0.5);
+            mediaPlayer.play();
+            System.out.println("🎵 Musique des règles lancée");
+        } else {
+            System.out.println("❌ Erreur : impossible de charger la musique des règles");
         }
     }
 

@@ -57,12 +57,13 @@ public class GameOverView {
         frog.setFont(Font.font("Arial", 72));
 
         String titreText = isWin ? "VICTOIRE !" : "GAME OVER";
-        Color  titreColor = isWin ? Color.web("#ADFF2F") : Color.web("#90EE90");
+        Color  titreColor = isWin ? Color.web("#751bd5") : Color.web("#FF6B00");
 
         Label titre = new Label(titreText);
         titre.setFont(Font.font("Arial Black", FontWeight.EXTRA_BOLD, 52));
+        titre.setStyle("-fx-font-style: italic;");
         titre.setTextFill(titreColor);
-        DropShadow glow = new DropShadow(25, titreColor);
+        DropShadow glow = new DropShadow(25, Color.web("#FFD600"));
         glow.setSpread(0.3);
         titre.setEffect(glow);
 

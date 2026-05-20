@@ -11,6 +11,9 @@ public class RulesController {
 
     public RulesController(Stage stage) {
         this.view = new RulesView(stage);
+        
+        // Lancer la musique des règles
+        AudioManager.playRulesMusic();
 
         view.getRetourButton().setOnAction(e -> {
             ViewManager.showMenuView(stage);
@@ -20,4 +23,5 @@ public class RulesController {
     public RulesView getView() {
         return view;
     }
+    
 }

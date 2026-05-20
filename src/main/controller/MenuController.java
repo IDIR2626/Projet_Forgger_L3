@@ -12,6 +12,7 @@ public class MenuController {
 
     public MenuController(Stage stage) {
         this.view = new MenuView(stage);
+        AudioManager.playMenuMusic(); // 🎵 Musique du menu
 
         view.getStartButton().setOnAction(e -> {
             view.showModeChoice(
@@ -26,8 +27,11 @@ public class MenuController {
         });
 
         view.getRulesButton().setOnAction(e -> {
-            AudioManager.stop();
             ViewManager.showRulesView(stage);
+        });
+
+        view.getSettingsButton().setOnAction(e -> {
+            ViewManager.showSettingsView(stage);
         });
 
         view.getQuitButton().setOnAction(e -> {

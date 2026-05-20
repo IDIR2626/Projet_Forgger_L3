@@ -27,6 +27,8 @@ public class GameController {
         this.stage = stage;
         this.jeu = new Jeu(modeJeu);
         this.view = new GameView(jeu);
+        
+
 
         setupControls(view.getScene());
 

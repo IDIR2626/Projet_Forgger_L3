@@ -17,6 +17,13 @@ public class GameOverView {
     private Button menuButton;
 
     public GameOverView(Stage stage, int score, boolean isWin) {
+        // Jouer la musique appropriée
+        if (isWin) {
+            AudioManager.playWinMusic();
+        } else {
+            AudioManager.playLoseMusic();
+        }
+        
         String imageName = isWin ? "youwin.jpg" : "youlose.jpg";
 
         ImageView background = null;

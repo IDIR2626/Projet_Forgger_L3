@@ -3,6 +3,7 @@ package vue;
 import controller.GameController;
 import controller.MenuController;
 import controller.RulesController;
+import controller.SettingsViewController;
 import javafx.stage.Stage;
 import model.ModeJeu;
 
@@ -43,7 +44,7 @@ public class ViewManager {
     }
 
     public static void showSettingsView(Stage stage) {
-        SettingsView settings = new SettingsView(stage);
-        stage.setScene(settings.getScene());
+        SettingsViewController controller = new SettingsViewController(stage);
+        stage.setScene(controller.getView().getScene());
     }
 }

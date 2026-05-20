@@ -13,7 +13,6 @@ public class RulesController {
         this.view = new RulesView(stage);
 
         view.getRetourButton().setOnAction(e -> {
-            AudioManager.stop();
             ViewManager.showMenuView(stage);
         });
     }

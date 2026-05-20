@@ -7,6 +7,7 @@ import javafx.scene.media.MediaPlayer;
 public class AudioManager {
 
     private static MediaPlayer mediaPlayer;
+    private static String currentMusic = ""; // Pour tracker la musique actuelle
     private static double brightness = 0.0; // -1.0 à 1.0
     private static ColorAdjust globalColorAdjust = new ColorAdjust();
 
@@ -24,6 +25,7 @@ public class AudioManager {
     // 🎵 Musique d'accueil (Mainview)
     public static void playAccueilMusic() {
         stop();
+        currentMusic = "accueil";
         mediaPlayer = load("/Audio/Musique Acceuille.mp3");
         if (mediaPlayer != null) {
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -32,10 +34,28 @@ public class AudioManager {
         }
     }
 
+    // 🎮 Musique du menu principal
+    public static void playMenuMusic() {
+        // Si la musique du menu est déjà en cours, la continuer au lieu de la redémarrer
+        if (currentMusic.equals("menu") && mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
+            mediaPlayer.play();
+        } else if (!currentMusic.equals("menu")) {
+            stop();
+            currentMusic = "menu";
+            mediaPlayer = load("/Audio/musique jeu 3.mp3");
+            if (mediaPlayer != null) {
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                mediaPlayer.setVolume(0.5);
+                mediaPlayer.play();
+            }
+        }
+    }
+
     // 🎮 Musique pendant le jeu
     public static void playGameMusic() {
         stop();
-        mediaPlayer = load("/ressources/Audio/musique jeu 3.mp3");
+        currentMusic = "game";
+        mediaPlayer = load("/Audio/musique jeu 1.mp3");
         if (mediaPlayer != null) {
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
             mediaPlayer.setVolume(0.5);
@@ -46,7 +66,8 @@ public class AudioManager {
     // 🏆 Musique quand on gagne
     public static void playWinMusic() {
         stop();
-        mediaPlayer = load("/ressources/Audio/musique paramètres.mp3");
+        currentMusic = "win";
+        mediaPlayer = load("/Audio/musique Gain.mp3");
         if (mediaPlayer != null) {
             mediaPlayer.setVolume(0.7);
             mediaPlayer.play();
@@ -56,9 +77,21 @@ public class AudioManager {
     // 💀 Musique quand on perd
     public static void playLoseMusic() {
         stop();
-        mediaPlayer = load("/ressources/Audio/musîque fin jeu.mp3");
+        currentMusic = "lose";
+        mediaPlayer = load("/Audio/musique fin jeu.mp3");
         if (mediaPlayer != null) {
             mediaPlayer.setVolume(0.7);
+            mediaPlayer.play();
+        }
+    }
+
+    // ⚙️ Musique du menu paramètres
+    public static void playSettingsMusic() {
+        stop();
+        mediaPlayer = load("/Audio/musique jeu 3.mp3");
+        if (mediaPlayer != null) {
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.setVolume(0.5);
             mediaPlayer.play();
         }
     }
@@ -68,6 +101,7 @@ public class AudioManager {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
+        currentMusic = "";
     }
 
     // 🔊 Ajuster le volume

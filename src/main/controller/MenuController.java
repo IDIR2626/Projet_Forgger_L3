@@ -1,10 +1,10 @@
 package controller;
 
 import javafx.stage.Stage;
+import model.ModeJeu;
+import vue.AudioManager;
 import vue.MenuView;
 import vue.ViewManager;
-import vue.AudioManager;
-import model.ModeJeu;
 
 public class MenuController {
 
@@ -12,35 +12,30 @@ public class MenuController {
 
     public MenuController(Stage stage) {
         this.view = new MenuView(stage);
-        AudioManager.playMenuMusic(); // 🎵 Musique du menu
 
-        view.getStartButton().setOnAction(e -> {
-            view.showModeChoice(
-                    () -> {
-                        AudioManager.stop();
-                        ViewManager.showGameView(stage, ModeJeu.CLASSIQUE);
-                    },
-                    () -> {
-                        AudioManager.stop();
-                        ViewManager.showGameView(stage, ModeJeu.TOXIQUE_FERROVIAIRE);
-                    });
-        });
+        view.getStartButton().setOnAction(e ->
+            view.playButtonAnimation(view.getStartButton(), () ->
+                view.showModeChoice(
+                    () -> { AudioManager.stop(); ViewManager.showGameView(stage, ModeJeu.CLASSIQUE); },
+                    () -> { AudioManager.stop(); ViewManager.showGameView(stage, ModeJeu.TOXIQUE_FERROVIAIRE); }
+                )
+            )
+        );
 
-        view.getRulesButton().setOnAction(e -> {
-            ViewManager.showRulesView(stage);
-        });
+        view.getRulesButton().setOnAction(e ->
+            view.playButtonAnimation(view.getRulesButton(), () -> {
+                AudioManager.stop();
+                ViewManager.showRulesView(stage);
+            })
+        );
 
-        view.getSettingsButton().setOnAction(e -> {
-            ViewManager.showSettingsView(stage);
-        });
-
-        view.getQuitButton().setOnAction(e -> {
-            AudioManager.stop();
-            stage.close();
-        });
+        view.getQuitButton().setOnAction(e ->
+            view.playButtonAnimation(view.getQuitButton(), () -> {
+                AudioManager.stop();
+                stage.close();
+            })
+        );
     }
 
-    public MenuView getView() {
-        return view;
-    }
+    public MenuView getView() { return view; }
 }
